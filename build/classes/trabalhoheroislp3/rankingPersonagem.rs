@@ -1,0 +1,4 @@
+janelas.rankingPersonagem$3
+janelas.rankingPersonagem
+janelas.rankingPersonagem$1
+janelas.rankingPersonagem$2

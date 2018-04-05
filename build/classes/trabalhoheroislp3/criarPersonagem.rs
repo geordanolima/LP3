@@ -1,0 +1,2 @@
+janelas.criarPersonagem
+janelas.criarPersonagem$1

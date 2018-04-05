@@ -1,0 +1,11 @@
+janelas.selecPersonagem$4
+janelas.selecPersonagem$3
+janelas.selecPersonagem$6
+janelas.selecPersonagem
+janelas.selecPersonagem$5
+janelas.selecPersonagem$2
+janelas.selecPersonagem$1
+janelas.selecPersonagem$10
+janelas.selecPersonagem$8
+janelas.selecPersonagem$7
+janelas.selecPersonagem$9
