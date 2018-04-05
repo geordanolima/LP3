@@ -163,10 +163,11 @@ public class Controle {
         }
         if ((p1.getVida() > 0 ) && (p2.getVida() <= 0)){
             setPerdedor(p2);
-            insereRanking();
+            insereRanking(p1,p1.getArma());
             return p1;
         } else {
             setPerdedor(p1);
+            insereRanking(p2,p2.getArma());
             return p2;
         }
     
