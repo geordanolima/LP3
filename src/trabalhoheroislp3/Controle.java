@@ -5,6 +5,8 @@
  */
 package trabalhoheroislp3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Persistence;
@@ -24,6 +26,12 @@ public class Controle {
     public void setPerdedor(Personagem perdedor) {
         this.perdedor = perdedor;
     }
+    
+    public List<Personagem> BuscaRankingPersonagem(){
+       PersonagemJpaController p = new PersonagemJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
+       return p.findPersonagemEntities();
+    }
+    
     public void insereRanking(Personagem p1, Arma a1){
       insereRankingPersonagem(p1);
       insereRankingArma(a1);
@@ -60,7 +68,7 @@ public class Controle {
         CampoBatalhaJpaController campoBatalhaJpaController = new CampoBatalhaJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
         max = campoBatalhaJpaController.getCampoBatalhaCount();
         randomico = ((int)(Math.random() * max));        
-        return campoBatalhaJpaController.findCampoBatalha(randomico);
+        return campoBatalhaJpaController.findCampoBatalha(randomico);               
     }
     
     public Personagem GetInicioJogo(Personagem p1, Personagem p2, CampoBatalha cp){

@@ -14,7 +14,14 @@ public class Batalha extends javax.swing.JFrame {
     /**
      * Creates new form Batalha
      */
-    public Batalha() {
+    Personagem personagem1;
+    Personagem personagem2;
+    Controle controle = new Controle();
+
+    public Batalha(Personagem p1, Personagem p2) {
+        
+        this.personagem1 = p1;
+        this.personagem2 = p2;
         initComponents();
     }
 
@@ -43,10 +50,6 @@ public class Batalha extends javax.swing.JFrame {
         chkJ1R1 = new javax.swing.JCheckBox();
         chkJ1R2 = new javax.swing.JCheckBox();
         chkJ1R3 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -103,20 +106,6 @@ public class Batalha extends javax.swing.JFrame {
 
         chkJ1R3.setText("R3");
 
-        jLabel5.setBackground(new java.awt.Color(153, 255, 153));
-        jLabel5.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel5.setText("jogador");
-
-        jLabel6.setForeground(new java.awt.Color(102, 255, 102));
-        jLabel6.setText("arma");
-
-        jLabel7.setBackground(new java.awt.Color(153, 255, 153));
-        jLabel7.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel7.setText("jogador");
-
-        jLabel8.setForeground(new java.awt.Color(102, 255, 102));
-        jLabel8.setText("arma");
-
         jLabel9.setText("Ata.");
 
         jLabel10.setText("Vida");
@@ -153,10 +142,6 @@ public class Batalha extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(chkJ1R3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel9)
@@ -186,12 +171,8 @@ public class Batalha extends javax.swing.JFrame {
                                         .addComponent(chkJ2R2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(chkJ2R3))
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(24, 24, 24))
+                                    .addComponent(jLabel2))
+                                .addGap(53, 53, 53))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -270,29 +251,16 @@ public class Batalha extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       // criar j1 e j2 
-        for (int i = 0; i < 10; i++) {
-            
-            Personagem jog1 = new Personagem();
-            Personagem jog2 = new Personagem();
-         
-            
-        }       
+       
+     controle.GetInicioJogo(personagem1, personagem2, controle.GetCampoBatalhaRandom());
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void chkJ1R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkJ1R1ActionPerformed
@@ -303,9 +271,6 @@ public class Batalha extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkJ2R3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -320,13 +285,13 @@ public class Batalha extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Batalha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adm_selecao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Batalha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adm_selecao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Batalha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adm_selecao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Batalha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adm_selecao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -365,10 +330,6 @@ public class Batalha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
