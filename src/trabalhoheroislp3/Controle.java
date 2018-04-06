@@ -24,18 +24,6 @@ public class Controle {
     public void setPerdedor(Personagem perdedor) {
         this.perdedor = perdedor;
     }
-    
-    
-    public void IniciaJogo(){
-        // iniciar o jogo
-    }
-    
-    public CampoBatalha GerarCampoBatalha(){
-        CampoBatalha campo = new CampoBatalha();
-        
-        return campo;
-    }
-   
     public void insereRanking(Personagem p1, Arma a1){
       insereRankingPersonagem(p1);
       insereRankingArma(a1);
@@ -65,16 +53,8 @@ public class Controle {
         }
     //fim gravaçao
     }
-    
-    public void BuscarRankingPersonagem(){
         
-    }
-    
-    public void BuscarRankingArma(){
-        
-    }
-    
-    public CampoBatalha GetCodigoElementoRandom(){
+    public CampoBatalha GetCampoBatalhaRandom(){
         int max;
         int randomico;
         CampoBatalhaJpaController campoBatalhaJpaController = new CampoBatalhaJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
@@ -141,7 +121,7 @@ public class Controle {
         
         
         while ((p1.getVida() > 0) || (p2.getVida() > 0)){
-            if ((GetInicioJogo(p1, p2, GerarCampoBatalha())) == p1) {
+            if ((GetInicioJogo(p1, p2, GetCampoBatalhaRandom())) == p1) {
                 if (p2.getDefesa()>0) {
                     if (calculaDano(p2.getDefesa(), p1.getAtaque()) >= 0){
                          p2.setDefesa(calculaDano(p2.getDefesa(), p1.getAtaque()));
