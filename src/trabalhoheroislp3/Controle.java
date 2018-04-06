@@ -5,6 +5,8 @@
  */
 package trabalhoheroislp3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Persistence;
@@ -25,17 +27,11 @@ public class Controle {
         this.perdedor = perdedor;
     }
     
-    
-    public void IniciaJogo(){
-        // iniciar o jogo
+    public List<Personagem> BuscaRankingPersonagem(){
+       PersonagemJpaController p = new PersonagemJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
+       return p.findPersonagemEntities();
     }
     
-    public CampoBatalha GerarCampoBatalha(){
-        CampoBatalha campo = new CampoBatalha();
-        
-        return campo;
-    }
-   
     public void insereRanking(Personagem p1, Arma a1){
       insereRankingPersonagem(p1);
       insereRankingArma(a1);
@@ -65,22 +61,14 @@ public class Controle {
         }
     //fim gravaçao
     }
-    
-    public void BuscarRankingPersonagem(){
         
-    }
-    
-    public void BuscarRankingArma(){
-        
-    }
-    
-    public CampoBatalha GetCodigoElementoRandom(){
+    public CampoBatalha GetCampoBatalhaRandom(){
         int max;
         int randomico;
         CampoBatalhaJpaController campoBatalhaJpaController = new CampoBatalhaJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
         max = campoBatalhaJpaController.getCampoBatalhaCount();
         randomico = ((int)(Math.random() * max));        
-        return campoBatalhaJpaController.findCampoBatalha(randomico);
+        return campoBatalhaJpaController.findCampoBatalha(randomico);               
     }
     
     public Personagem GetInicioJogo(Personagem p1, Personagem p2, CampoBatalha cp){
@@ -141,7 +129,7 @@ public class Controle {
         
         
         while ((p1.getVida() > 0) || (p2.getVida() > 0)){
-            if ((GetInicioJogo(p1, p2, GerarCampoBatalha())) == p1) {
+            if ((GetInicioJogo(p1, p2, GetCampoBatalhaRandom())) == p1) {
                 if (p2.getDefesa()>0) {
                     if (calculaDano(p2.getDefesa(), p1.getAtaque()) >= 0){
                          p2.setDefesa(calculaDano(p2.getDefesa(), p1.getAtaque()));
