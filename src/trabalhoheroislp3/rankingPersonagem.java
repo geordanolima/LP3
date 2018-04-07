@@ -1,5 +1,12 @@
 package trabalhoheroislp3;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import javax.persistence.Persistence;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ListModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +23,11 @@ public class rankingPersonagem extends javax.swing.JFrame {
      */
     public rankingPersonagem() {
         initComponents();
+        PersonagemJpaController e = new PersonagemJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
+        List lista= e.findPersonagemEntities();
+        Collections.sort(lista);      
+        ListModel<String> ce = new DefaultComboBoxModel(lista.toArray());
+        jList1.setModel(ce);
     }
 
     /**
@@ -41,7 +53,7 @@ public class rankingPersonagem extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("VOLTAR");
+        jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -57,13 +69,13 @@ public class rankingPersonagem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -76,7 +88,7 @@ public class rankingPersonagem extends javax.swing.JFrame {
         this.dispose();
         new tela_inicial().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

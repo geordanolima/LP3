@@ -80,5 +80,9 @@ public class Atributos implements Serializable {
     }
 
    
+      @Override
+    public String toString() {
+        return nome;
+    }
 
 }

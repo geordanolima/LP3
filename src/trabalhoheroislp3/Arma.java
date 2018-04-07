@@ -44,5 +44,10 @@ public class Arma extends Atributos implements Serializable {
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
+    
+    @Override
+    public String toString() {
+        return getNome();
+    }
 
 }

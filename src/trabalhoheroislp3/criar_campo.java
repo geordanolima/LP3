@@ -3,6 +3,8 @@ package trabalhoheroislp3;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Persistence;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -22,6 +24,9 @@ public class criar_campo extends javax.swing.JFrame {
      */
     public criar_campo() {
         initComponents();
+         ElementoJpaController e = new ElementoJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
+        ComboBoxModel<String> ce = new DefaultComboBoxModel(e.findElementoEntities().toArray());
+        jComboBox1.setModel(ce);
     }
 
     /**
@@ -39,7 +44,7 @@ public class criar_campo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jSpinner1 = new javax.swing.JSpinner();
         jSpinner2 = new javax.swing.JSpinner();
         jSpinner3 = new javax.swing.JSpinner();
@@ -68,13 +73,24 @@ public class criar_campo extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("NOME");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("CANCELA");
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("CADASTRA");
+        jButton2.setText("Criar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -98,18 +114,19 @@ public class criar_campo extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSpinner4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSpinner3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSpinner2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,14 +159,14 @@ public class criar_campo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 //BOTAO CADASTRAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
+        
        CampoBatalha campobatalha = new CampoBatalha();
     
      //campos janela criar campo de batalha
@@ -158,9 +175,9 @@ public class criar_campo extends javax.swing.JFrame {
         campobatalha.setVida(Integer.parseInt(jSpinner2.getValue().toString()));
         campobatalha.setDefesa(Integer.parseInt(jSpinner3.getValue().toString()));
         campobatalha.setIniciativa(Integer.parseInt(jSpinner4.getValue().toString()));
-      //ElementoJpaController e = new ElementoJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
-      //campobatalha.setElemento((Elemento) jComboBox1.getSelectedItem());
 
+        ElementoJpaController e = new ElementoJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
+        campobatalha.setElemento((Elemento) jComboBox1.getSelectedItem());
      //inicio gravaçao   
         CampoBatalhaJpaController c = new CampoBatalhaJpaController(Persistence.createEntityManagerFactory("TrabalhoHeroisLP3PU"));
         try {
@@ -169,11 +186,26 @@ public class criar_campo extends javax.swing.JFrame {
             Logger.getLogger(criar_campo.class.getName()).log(Level.SEVERE, null, ex);
         }
      //fim gravaçao
+        jTextField1 = null;
+        jSpinner1=null;
+        jSpinner2=null;
+        jSpinner3=null;
+        jSpinner4=null;
         
      //mensagem  
         JOptionPane.showMessageDialog(null, "Campo de batalha gravado com sucesso!");
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new adm_selecao().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

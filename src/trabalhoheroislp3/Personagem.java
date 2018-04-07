@@ -16,10 +16,15 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 
-public class Personagem extends Atributos implements Serializable {
+public class Personagem extends Atributos implements Serializable, Comparable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Elemento elemento;
+
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
     @ManyToOne(cascade = CascadeType.ALL)
     private Arma arma;
     private String caminho;
@@ -55,6 +60,19 @@ public class Personagem extends Atributos implements Serializable {
 
     public void setCaminho(String caminho) {
         this.caminho = caminho;
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        if (numVitorias == ((Personagem) o).getNumVitorias()) {
+            return 0;
+        } else {
+            if (numVitorias < ((Personagem) o).getNumVitorias()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
     }
 
 }

@@ -39,8 +39,9 @@ public class Elemento {
 
     @Override
     public String toString() {
-        return "" + codigoElemento;
+        return nomeElemento;
     }
+    
     
     
 }
